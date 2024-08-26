@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
     url: "https://rdsx.dev",
   },
   siteUrl: "https://time.rdsx.dev",
-  ogImage: "https://time.rdsx.dev",
+  ogImage: "https://time.rdsx.dev/og.png",
   links: {
     x: "https://x.com/rds_agi",
     github: "https://github.com/rudrodip/shadcn-date-time-picker",
