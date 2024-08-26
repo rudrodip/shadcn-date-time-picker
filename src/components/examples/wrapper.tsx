@@ -28,7 +28,7 @@ export const ComponentWrapper = ({
   }
   const snippet = filteredSnippets[0];
   return (
-    <div className="relative w-full flex flex-col gap-2">
+    <div className="w-full flex flex-col gap-2">
       <div className="w-full flex justify-between items-center">
         <Label>{label}</Label>
         <div className="flex items-center gap-2">
