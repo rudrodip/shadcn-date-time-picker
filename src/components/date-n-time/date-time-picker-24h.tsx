@@ -1,0 +1,104 @@
+"use client";
+
+import * as React from "react";
+import { CalendarIcon } from "@radix-ui/react-icons"
+import { format } from "date-fns";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
+export function DateTimePicker24h() {
+  const [date, setDate] = React.useState<Date>();
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const hours = Array.from({ length: 24 }, (_, i) => i);
+  const handleDateSelect = (selectedDate: Date | undefined) => {
+    if (selectedDate) {
+      setDate(selectedDate);
+    }
+  };
+
+  const handleTimeChange = (
+    type: "hour" | "minute",
+    value: string
+  ) => {
+    if (date) {
+      const newDate = new Date(date);
+      if (type === "hour") {
+        newDate.setHours(parseInt(value));
+      } else if (type === "minute") {
+        newDate.setMinutes(parseInt(value));
+      }
+      setDate(newDate);
+    }
+  };
+
+  return (
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          className={cn(
+            "w-full justify-start text-left font-normal",
+            !date && "text-muted-foreground"
+          )}
+        >
+          <CalendarIcon className="mr-2 h-4 w-4" />
+          {date ? (
+            format(date, "MM/dd/yyyy hh:mm")
+          ) : (
+            <span>MM/DD/YYYY hh:mm</span>
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0">
+        <div className="flex">
+          <Calendar
+            mode="single"
+            selected={date}
+            onSelect={handleDateSelect}
+            initialFocus
+          />
+          <div className="border-l flex h-[300px] divide-x">
+            <div className="flex-1 overflow-y-auto p-2">
+              <div className="flex flex-col">
+                {hours.reverse().map((hour) => (
+                  <Button
+                    key={hour}
+                    size="icon"
+                    variant={date && date.getHours() === hour ? "default" : "ghost"}
+                    className="w-full shrink-0 aspect-square"
+                    onClick={() => handleTimeChange("hour", hour.toString())}
+                  >
+                    {hour}
+                  </Button>
+                ))}
+              </div>
+            </div>
+            <div className="flex-1 overflow-y-auto p-2">
+              <div className="flex flex-col">
+                {Array.from({ length: 12 }, (_, i) => i * 5).map((minute) => (
+                  <Button
+                    key={minute}
+                    size="icon"
+                    variant={date && date.getMinutes() === minute ? "default" : "ghost"}
+                    className="w-full shrink-0 aspect-square"
+                    onClick={() => handleTimeChange("minute", minute.toString())}
+                  >
+                    {minute}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}
