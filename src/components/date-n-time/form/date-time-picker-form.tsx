@@ -24,6 +24,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { toast } from "sonner";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const FormSchema = z.object({
   time: z.date({
@@ -104,8 +105,8 @@ export function DateTimePickerFrom() {
                       initialFocus
                     />
                     <div className="border-l flex h-[300px] divide-x">
-                      <div className="relative flex-1 overflow-y-auto p-2">
-                        <div className="flex flex-col">
+                      <ScrollArea>
+                        <div className="flex flex-col p-2">
                           {Array.from({ length: 12 }, (_, i) => i + 1)
                             .reverse()
                             .map((hour) => (
@@ -127,9 +128,9 @@ export function DateTimePickerFrom() {
                               </Button>
                             ))}
                         </div>
-                      </div>
-                      <div className="flex-1 overflow-y-auto p-2">
-                        <div className="flex flex-col">
+                      </ScrollArea>
+                      <ScrollArea>
+                        <div className="flex flex-col p-2">
                           {Array.from({ length: 12 }, (_, i) => i * 5).map(
                             (minute) => (
                               <Button
@@ -151,9 +152,9 @@ export function DateTimePickerFrom() {
                             )
                           )}
                         </div>
-                      </div>
-                      <div className="flex-1 overflow-y-auto p-2">
-                        <div className="flex flex-col">
+                      </ScrollArea>
+                      <ScrollArea>
+                        <div className="flex flex-col p-2">
                           {["AM", "PM"].map((ampm) => (
                             <Button
                               key={ampm}
@@ -174,7 +175,7 @@ export function DateTimePickerFrom() {
                             </Button>
                           ))}
                         </div>
-                      </div>
+                      </ScrollArea>
                     </div>
                   </div>
                 </PopoverContent>

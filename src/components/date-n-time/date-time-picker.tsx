@@ -12,6 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function DateTimePicker() {
   const [date, setDate] = React.useState<Date>();
@@ -73,8 +74,8 @@ export function DateTimePicker() {
             initialFocus
           />
           <div className="border-l flex h-[300px] divide-x">
-            <div className="relative flex-1 overflow-y-auto p-2">
-              <div className="flex flex-col">
+            <ScrollArea>
+              <div className="flex flex-col p-2">
                 {hours.reverse().map((hour) => (
                   <Button
                     key={hour}
@@ -91,9 +92,9 @@ export function DateTimePicker() {
                   </Button>
                 ))}
               </div>
-            </div>
-            <div className="flex-1 overflow-y-auto p-2">
-              <div className="flex flex-col">
+            </ScrollArea>
+            <ScrollArea>
+              <div className="flex flex-col p-2">
                 {Array.from({ length: 12 }, (_, i) => i * 5).map((minute) => (
                   <Button
                     key={minute}
@@ -110,9 +111,9 @@ export function DateTimePicker() {
                   </Button>
                 ))}
               </div>
-            </div>
-            <div className="flex-1 overflow-y-auto p-2">
-              <div className="flex flex-col">
+            </ScrollArea>
+            <ScrollArea>
+              <div className="flex flex-col p-2">
                 {["AM", "PM"].map((ampm) => (
                   <Button
                     key={ampm}
@@ -131,7 +132,7 @@ export function DateTimePicker() {
                   </Button>
                 ))}
               </div>
-            </div>
+            </ScrollArea>
           </div>
         </div>
       </PopoverContent>
