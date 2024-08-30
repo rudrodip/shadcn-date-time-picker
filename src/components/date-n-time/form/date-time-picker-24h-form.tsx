@@ -23,6 +23,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
 
 const FormSchema = z.object({
@@ -97,8 +98,8 @@ export function DateTimePicker24hForm() {
                       initialFocus
                     />
                     <div className="border-l flex h-[300px] divide-x">
-                      <div className="relative flex-1 overflow-y-auto p-2">
-                        <div className="flex flex-col">
+                      <ScrollArea>
+                        <div className="flex flex-col p-2">
                           {Array.from({ length: 24 }, (_, i) => i)
                             .reverse()
                             .map((hour) => (
@@ -120,9 +121,9 @@ export function DateTimePicker24hForm() {
                               </Button>
                             ))}
                         </div>
-                      </div>
-                      <div className="flex-1 overflow-y-auto p-2">
-                        <div className="flex flex-col">
+                      </ScrollArea>
+                      <ScrollArea>
+                        <div className="flex flex-col p-2">
                           {Array.from({ length: 12 }, (_, i) => i * 5).map(
                             (minute) => (
                               <Button
@@ -144,7 +145,7 @@ export function DateTimePicker24hForm() {
                             )
                           )}
                         </div>
-                      </div>
+                      </ScrollArea>
                     </div>
                   </div>
                 </PopoverContent>
