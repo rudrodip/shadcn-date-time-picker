@@ -12,7 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 export function DateTimePicker24h() {
   const [date, setDate] = React.useState<Date>();
@@ -59,43 +59,45 @@ export function DateTimePicker24h() {
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
-        <div className="flex">
+        <div className="sm:flex">
           <Calendar
             mode="single"
             selected={date}
             onSelect={handleDateSelect}
             initialFocus
           />
-          <div className="border-l flex h-[300px] divide-x">
-            <ScrollArea>
-              <div className="flex flex-col p-2">
+          <div className="flex flex-col sm:flex-row sm:h-[300px] divide-y sm:divide-y-0 sm:divide-x">
+            <ScrollArea className="w-64 sm:w-auto">
+              <div className="flex sm:flex-col p-2">
                 {hours.reverse().map((hour) => (
                   <Button
                     key={hour}
                     size="icon"
                     variant={date && date.getHours() === hour ? "default" : "ghost"}
-                    className="w-full shrink-0 aspect-square"
+                    className="sm:w-full shrink-0 aspect-square"
                     onClick={() => handleTimeChange("hour", hour.toString())}
                   >
                     {hour}
                   </Button>
                 ))}
               </div>
+              <ScrollBar orientation="horizontal" className="sm:hidden" />
             </ScrollArea>
-            <ScrollArea>
-              <div className="flex flex-col p-2">
+            <ScrollArea className="w-64 sm:w-auto">
+              <div className="flex sm:flex-col p-2">
                 {Array.from({ length: 12 }, (_, i) => i * 5).map((minute) => (
                   <Button
                     key={minute}
                     size="icon"
                     variant={date && date.getMinutes() === minute ? "default" : "ghost"}
-                    className="w-full shrink-0 aspect-square"
+                    className="sm:w-full shrink-0 aspect-square"
                     onClick={() => handleTimeChange("minute", minute.toString())}
                   >
-                    {minute}
+                    {minute.toString().padStart(2, '0')}
                   </Button>
                 ))}
               </div>
+              <ScrollBar orientation="horizontal" className="sm:hidden" />
             </ScrollArea>
           </div>
         </div>

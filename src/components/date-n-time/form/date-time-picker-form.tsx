@@ -15,7 +15,6 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import {
@@ -24,7 +23,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { toast } from "sonner";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const FormSchema = z.object({
   time: z.date({
@@ -76,7 +75,6 @@ export function DateTimePickerForm() {
           name="time"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              {/* <FormLabel>Enter your date & time (12h)</FormLabel> */}
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -97,16 +95,16 @@ export function DateTimePickerForm() {
                   </FormControl>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
-                  <div className="flex">
+                  <div className="sm:flex">
                     <Calendar
                       mode="single"
                       selected={field.value}
                       onSelect={handleDateSelect}
                       initialFocus
                     />
-                    <div className="border-l flex h-[300px] divide-x">
-                      <ScrollArea>
-                        <div className="flex flex-col p-2">
+                    <div className="flex flex-col sm:flex-row sm:h-[300px] divide-y sm:divide-y-0 sm:divide-x">
+                      <ScrollArea className="w-64 sm:w-auto">
+                        <div className="flex sm:flex-col p-2">
                           {Array.from({ length: 12 }, (_, i) => i + 1)
                             .reverse()
                             .map((hour) => (
@@ -119,7 +117,7 @@ export function DateTimePickerForm() {
                                     ? "default"
                                     : "ghost"
                                 }
-                                className="w-full shrink-0 aspect-square"
+                                className="sm:w-full shrink-0 aspect-square"
                                 onClick={() =>
                                   handleTimeChange("hour", hour.toString())
                                 }
@@ -128,9 +126,10 @@ export function DateTimePickerForm() {
                               </Button>
                             ))}
                         </div>
+                        <ScrollBar orientation="horizontal" className="sm:hidden" />
                       </ScrollArea>
-                      <ScrollArea>
-                        <div className="flex flex-col p-2">
+                      <ScrollArea className="w-64 sm:w-auto">
+                        <div className="flex sm:flex-col p-2">
                           {Array.from({ length: 12 }, (_, i) => i * 5).map(
                             (minute) => (
                               <Button
@@ -142,19 +141,20 @@ export function DateTimePickerForm() {
                                     ? "default"
                                     : "ghost"
                                 }
-                                className="w-full shrink-0 aspect-square"
+                                className="sm:w-full shrink-0 aspect-square"
                                 onClick={() =>
                                   handleTimeChange("minute", minute.toString())
                                 }
                               >
-                                {minute}
+                                {minute.toString().padStart(2, '0')}
                               </Button>
                             )
                           )}
                         </div>
+                        <ScrollBar orientation="horizontal" className="sm:hidden" />
                       </ScrollArea>
-                      <ScrollArea>
-                        <div className="flex flex-col p-2">
+                      <ScrollArea className="">
+                        <div className="flex sm:flex-col p-2">
                           {["AM", "PM"].map((ampm) => (
                             <Button
                               key={ampm}
@@ -168,7 +168,7 @@ export function DateTimePickerForm() {
                                   ? "default"
                                   : "ghost"
                               }
-                              className="w-full shrink-0 aspect-square"
+                              className="sm:w-full shrink-0 aspect-square"
                               onClick={() => handleTimeChange("ampm", ampm)}
                             >
                               {ampm}
