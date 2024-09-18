@@ -32,7 +32,7 @@ const FormSchema = z.object({
   }),
 });
 
-export function DateTimePickerFrom() {
+export function DateTimePickerForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });

@@ -1,4 +1,4 @@
-import { DatePickerForm, DatePickerWithRangeForm, DateTimePickerFrom, DateTimePicker24hForm } from "@/components/date-n-time/form";
+import { DatePickerForm, DatePickerWithRangeForm, DateTimePickerForm, DateTimePicker24hForm } from "@/components/date-n-time/form";
 import { ComponentWrapper } from "./wrapper";
 
 export const FormExamples = () => {
@@ -22,7 +22,7 @@ export const FormExamples = () => {
           slug="date-picker-range-form"
         />
         <ComponentWrapper
-          Component={DateTimePickerFrom}
+          Component={DateTimePickerForm}
           label="Date Time Picker Form"
           slug="date-time-picker-form"
         />
