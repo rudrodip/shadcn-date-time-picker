@@ -14,27 +14,27 @@ export default function Socials() {
       <Button
         variant="outline"
         size="sm"
-        className="rounded size-8 p-0"
+        className="rounded size-7 md:size-8 p-0"
         asChild
       >
         <a href={siteConfig.links.x} target="_blank" rel="noreferrer">
-          <TwitterLogoIcon />
+          <TwitterLogoIcon className="size-3 md:size-4" />
         </a>
       </Button>
       <Button
         variant="outline"
         size="sm"
-        className="rounded size-8 p-0"
+        className="rounded size-7 md:size-8 p-0"
         asChild
       >
         <a href={siteConfig.links.github} target="_blank" rel="noreferrer">
-          <GitHubLogoIcon />
+          <GitHubLogoIcon className="size-3 md:size-4" />
         </a>
       </Button>
       <Button
         variant="outline"
         size="sm"
-        className="rounded size-8 p-0"
+        className="rounded size-7 md:size-8 p-0"
         asChild
       >
         <a
@@ -42,7 +42,7 @@ export default function Socials() {
           target="_blank"
           rel="noreferrer"
         >
-          <CodeIcon />
+          <CodeIcon className="size-3 md:size-4" />
         </a>
       </Button>
     </div>
