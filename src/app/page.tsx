@@ -21,7 +21,7 @@ export default function Home() {
 const Header = () => {
   return (
     <div className="w-full flex justify-between">
-      <h1 className="head-text-md">Date & Time picker</h1>
+      <h1 className="head-text-sm md:head-text-md">Date & Time picker</h1>
       <Socials />
     </div>
   );
