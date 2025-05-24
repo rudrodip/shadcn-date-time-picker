@@ -52,9 +52,9 @@ export function DateTimePicker24h() {
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
           {date ? (
-            format(date, "MM/dd/yyyy hh:mm")
+            format(date, "MM/dd/yyyy HH:mm")
           ) : (
-            <span>MM/DD/YYYY hh:mm</span>
+            <span>MM/DD/YYYY HH:mm</span>
           )}
         </Button>
       </PopoverTrigger>
